@@ -37,4 +37,16 @@ public class LockerTest {
 
         assertNotNull(pickedPack);
     }
+
+    @Test
+    public void should_get_null_given_locker_has_pack_and_ticket_when_pick_up_pack_and_pick_up_pack() {
+        Locker locker = new Locker(10);
+        Pack pack = new Pack();
+        Ticket ticket = locker.save(pack);
+
+        locker.pickUp(ticket);
+        Pack secondPickedPack = locker.pickUp(ticket);
+
+        assertNull(secondPickedPack);
+    }
 }

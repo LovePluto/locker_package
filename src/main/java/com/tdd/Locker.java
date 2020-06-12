@@ -1,7 +1,12 @@
 package com.tdd;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Locker {
     private int size;
+    private Map<Ticket, Pack> savedPack = new HashMap<>();
 
     public Locker(int size) {
         this.size = size;
@@ -11,10 +16,12 @@ public class Locker {
         if (size == 0) {
             return null;
         }
-        return new Ticket();
+        Ticket ticket = new Ticket();
+        savedPack.put(ticket, pack);
+        return ticket;
     }
 
     public Pack pickUp(Ticket ticket) {
-        return new Pack();
+        return savedPack.remove(ticket);
     }
 }
