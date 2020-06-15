@@ -23,4 +23,8 @@ public class Locker {
     public Pack pickUp(Ticket ticket) {
         return savedPack.remove(ticket);
     }
+
+    public boolean isFull() {
+        return savedPack.size() >= capacity;
+    }
 }

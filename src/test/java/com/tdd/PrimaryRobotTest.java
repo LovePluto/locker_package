@@ -20,4 +20,21 @@ public class PrimaryRobotTest {
         Pack pickedPack = locker1.pickUp(ticket);
         Assert.assertEquals(pack, pickedPack);
     }
+
+    // Given 管理两个locker的robot，第一个locker满，第二个locker有位置，包，when 存包，then 存入locker2,返回票。
+    @Test
+    public void should_store_to_locker2_and_return_ticket_given_manage_two_locker_first_full_second_not_full_when_save_pack() {
+        Locker locker1 = new Locker(0);
+        Locker locker2 = new Locker(5);
+        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        Pack pack = new Pack();
+
+        Ticket ticket = primaryRobot.save(pack);
+
+        Assert.assertNotNull(ticket);
+
+        Pack pickedPack = locker2.pickUp(ticket);
+        Assert.assertEquals(pack, pickedPack);
+    }
+
 }

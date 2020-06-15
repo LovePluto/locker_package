@@ -9,6 +9,13 @@ public class PrimaryRobot {
     }
 
     public Ticket save(Pack pack) {
-        return lockers.get(0).save(pack);
+        for (Locker locker : lockers) {
+            if (locker.isFull()) {
+                continue;
+            }
+
+            return locker.save(pack);
+        }
+        return null;
     }
 }
