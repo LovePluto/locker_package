@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Locker {
-    private int size;
+    private int capacity;
     private Map<Ticket, Pack> savedPack = new HashMap<>();
 
-    public Locker(int size) {
-        this.size = size;
+    public Locker(int capacity) {
+        this.capacity = capacity;
     }
 
     public Ticket save(Pack pack) {
-        if (size == 0) {
+        if (capacity == 0) {
             return null;
         }
         Ticket ticket = new Ticket();
