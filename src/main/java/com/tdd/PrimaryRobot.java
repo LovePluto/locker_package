@@ -18,4 +18,14 @@ public class PrimaryRobot {
         }
         throw  new LockerException("The locker is full");
     }
+
+    public Pack pickUp(Ticket ticket) {
+        for (Locker locker : lockers) {
+            Pack pack = locker.pickUp(ticket);
+            if (pack != null) {
+                return pack;
+            }
+        }
+        throw new LockerException("Invalid ticket");
+    }
 }
