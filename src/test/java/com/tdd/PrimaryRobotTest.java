@@ -37,4 +37,18 @@ public class PrimaryRobotTest {
         Assert.assertEquals(pack, pickedPack);
     }
 
+    // Given 管理两个locker的robot，两个locker都满，包，when 存包，then 存入失败，提示柜子已满。
+    @Test
+    public void should_save_fail_with_message_given_manage_two_locker_both_are_full_when_save_pack() {
+        Locker locker1 = new Locker(0);
+        Locker locker2 = new Locker(0);
+        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        Pack pack = new Pack();
+
+        try {
+            primaryRobot.save(pack);
+        } catch (LockerException e) {
+            Assert.assertEquals("The locker is full", e.getMessage());
+        }
+    }
 }

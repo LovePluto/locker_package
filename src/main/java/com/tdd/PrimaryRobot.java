@@ -16,6 +16,6 @@ public class PrimaryRobot {
 
             return locker.save(pack);
         }
-        return null;
+        throw  new LockerException("The locker is full");
     }
 }
