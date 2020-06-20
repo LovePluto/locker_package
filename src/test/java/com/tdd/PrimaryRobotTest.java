@@ -1,10 +1,11 @@
 package com.tdd;
 
-import com.sun.tools.javac.util.List;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.Arrays;
 
 public class PrimaryRobotTest {
     @Rule
@@ -15,7 +16,7 @@ public class PrimaryRobotTest {
     public void should_store_to_locker1_and_return_ticket_given_manage_two_not_fulled_locker_when_save_pack() {
         Locker locker1 = new Locker(10);
         Locker locker2 = new Locker(5);
-        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        PrimaryRobot primaryRobot = new  PrimaryRobot(Arrays.asList(locker1, locker2));
         Pack pack = new Pack();
 
         Ticket ticket = primaryRobot.save(pack);
@@ -31,7 +32,7 @@ public class PrimaryRobotTest {
     public void should_store_to_locker2_and_return_ticket_given_manage_two_locker_first_full_second_not_full_when_save_pack() {
         Locker locker1 = new Locker(0);
         Locker locker2 = new Locker(5);
-        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        PrimaryRobot primaryRobot = new  PrimaryRobot(Arrays.asList(locker1, locker2));
         Pack pack = new Pack();
 
         Ticket ticket = primaryRobot.save(pack);
@@ -47,7 +48,7 @@ public class PrimaryRobotTest {
     public void should_save_fail_with_message_given_manage_two_locker_both_are_full_when_save_pack() {
         Locker locker1 = new Locker(0);
         Locker locker2 = new Locker(0);
-        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        PrimaryRobot primaryRobot = new  PrimaryRobot(Arrays.asList(locker1, locker2));
         Pack pack = new Pack();
 
         try {
@@ -62,7 +63,7 @@ public class PrimaryRobotTest {
     public void should_get_saved_pack_given_saved_pack_locker_and_ticket_when_pick_up_pack() {
         Locker locker1 = new Locker(2);
         Locker locker2 = new Locker(3);
-        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        PrimaryRobot primaryRobot = new  PrimaryRobot(Arrays.asList(locker1, locker2));
         Pack pack = new Pack();
         Ticket ticket = primaryRobot.save(pack);
 
@@ -76,7 +77,7 @@ public class PrimaryRobotTest {
     public void should_pick_up_fail_with_message_given_saved_pack_locker_and_invalid_ticket_when_pick_up_pack() {
         Locker locker1 = new Locker(2);
         Locker locker2 = new Locker(3);
-        PrimaryRobot primaryRobot = new  PrimaryRobot(List.of(locker1, locker2));
+        PrimaryRobot primaryRobot = new  PrimaryRobot(Arrays.asList(locker1, locker2));
 
         expectedEx.expect(LockerException.class);
         expectedEx.expectMessage("Invalid ticket");

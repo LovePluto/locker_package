@@ -1,14 +1,22 @@
 package com.tdd;
 
-import com.sun.tools.javac.util.List;
+
+import java.util.List;
 
 public class PrimaryRobot {
     private List<Locker> lockers;
+
     public PrimaryRobot(List<Locker> lockerList) {
         this.lockers = lockerList;
     }
 
     public Ticket save(Pack pack) {
+
+//        Optional<Locker> first = lockers.stream().parallel().filter(item -> !item.isFull()).findFirst();
+//        if (!first.isPresent()) {
+//            throw new LockerException("The locker is full");
+//        }
+//        return first.get().save(pack);
         for (Locker locker : lockers) {
             if (locker.isFull()) {
                 continue;
@@ -16,7 +24,8 @@ public class PrimaryRobot {
 
             return locker.save(pack);
         }
-        throw  new LockerException("The locker is full");
+        throw new LockerException("The locker is full");
+
     }
 
     public Pack pickUp(Ticket ticket) {
